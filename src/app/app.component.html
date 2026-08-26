@@ -1,4 +1,6 @@
 <app-container>
     <app-cabecalho></app-cabecalho>
-    <router-outlet></router-outlet>
+    @for (letra of alfabeto; track letra){
+        <app-separador>{{ letra }}</app-separador>
+    }
 </app-container>
