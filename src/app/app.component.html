@@ -1,6 +1,9 @@
 <app-container>
     <app-cabecalho></app-cabecalho>
     @for (letra of alfabeto; track letra){
-        <app-separador>{{ letra }}</app-separador>
+    <app-separador>
+        {{ letra }}
+        <app-contato nome="Bill Gates" telefone="99 99999-9999"></app-contato>
+    </app-separador>
     }
 </app-container>
