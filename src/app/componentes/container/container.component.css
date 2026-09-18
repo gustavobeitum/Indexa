@@ -10,3 +10,11 @@
     margin-top: 80px;
     box-sizing: border-box;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 32px 20px;
+        margin-top: 24px;
+        border-radius: 12px;
+    }
+}
