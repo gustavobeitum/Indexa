@@ -6,3 +6,9 @@ body {
     margin: 80px;
     min-height: 100vh;
 }
+
+@media (max-width: 768px) {
+    body {
+        margin: 24px 12px;
+    }
+}
