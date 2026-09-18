@@ -75,6 +75,9 @@ input#aniversario {
     input#aniversario {
         width: 100%;
     }
+    .botoes {
+        gap: 6px;
+    }
 }
 
 label[for="redes"] {
