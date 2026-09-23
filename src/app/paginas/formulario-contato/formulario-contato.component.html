@@ -8,25 +8,25 @@
             <h1>Adicionar Contato</h1>
         </section>
     </header>
-    <form>
+    <form [formGroup]="contatoForm" (ngSubmit)="salvarContato()">
         <label for="nome">Nome</label>
-        <input type="text" id="nome" placeholder="Digite o nome do contato" />
+        <input type="text" id="nome" placeholder="Digite o nome do contato" formControlName="nome" />
         <label for="telefone">Telefone</label>
-        <input type="text" id="telefone" placeholder="Digite o telefone do contato" />
+        <input type="text" id="telefone" placeholder="Digite o telefone do contato" formControlName="telefone" />
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Digite o email do contato" />
+        <input type="email" id="email" placeholder="Digite o email do contato" formControlName="email" />
         <app-separador></app-separador>
         <label for="aniversario">Aniversário</label>
-        <input type="text" id="aniversario" #aniversario placeholder="dd/mm/aaaa" readonly>
+        <input type="text" id="aniversario" #aniversario placeholder="dd/mm/aaaa" readonly formControlName="aniversario" />
         <label for="redes">Redes Sociais</label>
         <div class="input-container">
             <span class="span-http">http://</span>
-            <input type="url" id="redes" placeholder="Adicione a URL da página" />
+            <input type="url" id="redes" placeholder="Adicione a URL da página" formControlName="redes" />
         </div>
         <label for="redes">Observações</label>
-        <textarea type="text" id="observacoes"  placeholder="Coloque observações nesse espaço. Exemplo: Instrutura da academia 'Nova Imagem', amiga da Júlia."></textarea>
+        <textarea type="text" id="observacoes"  placeholder="Coloque observações nesse espaço. Exemplo: Instrutura da academia 'Nova Imagem', amiga da Júlia." formControlName="observacoes"></textarea>
         <section class="botoes">
-            <button class="botao-cancelar" type="button">Cancelar</button>
+            <button (click)="cancelar()" class="botao-cancelar" type="button">Cancelar</button>
             <button class="botao-salvar" type="submit">Salvar contato</button>
         </section>
     </form>

@@ -1,16 +1,38 @@
 import { ContainerComponent } from '../../componentes/container/container.component';
 import { SeparadorComponent } from '../../componentes/separador/separador.component';
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import flatpickr from 'flatpickr';
 import { Portuguese } from 'flatpickr/dist/l10n/pt.js';
 
 @Component({
   selector: 'app-formulario-contato',
-  imports: [ContainerComponent, SeparadorComponent],
+  imports: [ContainerComponent, SeparadorComponent, ReactiveFormsModule],
   templateUrl: './formulario-contato.component.html',
   styleUrl: './formulario-contato.component.css'
 })export class FormularioContatoComponent implements AfterViewInit {
+  contatoForm: FormGroup;
   @ViewChild('aniversario') aniversarioInput!: ElementRef<HTMLInputElement>;
+
+  constructor() {
+    this.contatoForm = new FormGroup({
+      nome: new FormControl(''),
+      telefone: new FormControl(''),
+      email: new FormControl(''),
+      aniversario: new FormControl(''),
+      redes: new FormControl(''),
+      observacoes: new FormControl('')
+    });
+  }
+
+  salvarContato() {
+    console.log(this.contatoForm.value);
+  }
+
+  cancelar() {
+    console.log('Formulário cancelado');
+  }
+
 
   ngAfterViewInit() {
     flatpickr(this.aniversarioInput.nativeElement, {
