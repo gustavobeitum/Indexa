@@ -1,0 +1,52 @@
+input {
+    border-radius: 4px;
+    border: 1px solid #CED4DA;
+    width: 100%;
+    margin: 40px 0;
+    padding: 6px 12px;
+    color: #6C757D;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.adicionar-contato {
+  display: flex;
+  justify-content: center;
+}
+
+.adicionar-contato button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #ffffff;
+  color: #4a90e2;
+  border: 1px solid #4a90e2;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+}
+
+.adicionar-contato button:hover {
+  background-color: #f0f7ff;
+}
+
+.adicionar-contato button:active {
+  background-color: #e0efff;
+}
+
+.adicionar-contato button img {
+  width: 14px;
+  height: 14px;
+}
+
+.adicionar-contato button span {
+  line-height: 1;
+}
