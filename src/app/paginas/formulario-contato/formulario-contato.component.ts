@@ -5,11 +5,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule, NgClass } from '@angular/common';
 import flatpickr from 'flatpickr';
 import { Portuguese } from 'flatpickr/dist/l10n/pt.js';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-contato',
   standalone: true,
-  imports: [ContainerComponent, SeparadorComponent, ReactiveFormsModule, NgClass, CommonModule],
+  imports: [ContainerComponent, SeparadorComponent, ReactiveFormsModule, NgClass, CommonModule, RouterLink],
   templateUrl: './formulario-contato.component.html',
   styleUrl: './formulario-contato.component.css'
 })

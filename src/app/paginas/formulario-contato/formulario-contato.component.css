@@ -71,6 +71,36 @@ input#aniversario {
     display: block;
 }
 
+
+.voltar-contato {
+  display: flex;
+  justify-content: start;
+}
+
+.voltar-contato button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  padding: 8px 16px;
+  color: #4a90e2;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.voltar-contato button img {
+  width: 14px;
+  height: 14px;
+}
+
+.voltar-contato button span {
+  line-height: 1;
+}
+
 @media (max-width: 480px) {
     input#aniversario {
         width: 100%;
