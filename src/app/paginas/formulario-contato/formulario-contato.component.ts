@@ -1,6 +1,6 @@
 import { ContainerComponent } from '../../componentes/container/container.component';
 import { SeparadorComponent } from '../../componentes/separador/separador.component';
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule, NgClass } from '@angular/common';
 import flatpickr from 'flatpickr';
@@ -14,11 +14,14 @@ import { RouterLink } from '@angular/router';
   templateUrl: './formulario-contato.component.html',
   styleUrl: './formulario-contato.component.css'
 })
-export class FormularioContatoComponent implements AfterViewInit {
-  contatoForm: FormGroup;
+export class FormularioContatoComponent implements AfterViewInit, OnInit {
+  contatoForm!: FormGroup;
+  
   @ViewChild('aniversario') aniversarioInput!: ElementRef<HTMLInputElement>;
 
-  constructor() {
+  constructor(){}
+
+  ngOnInit() {
     this.contatoForm = new FormGroup({
       nome: new FormControl('', [
         Validators.required,

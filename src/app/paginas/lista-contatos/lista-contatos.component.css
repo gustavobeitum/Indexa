@@ -50,3 +50,10 @@ input {
 .adicionar-contato button span {
   line-height: 1;
 }
+
+.mensagem-vazia {
+    text-align: center;
+    color: #6c757d;
+    margin-top: 32px;
+    line-height: 1.5;
+}
