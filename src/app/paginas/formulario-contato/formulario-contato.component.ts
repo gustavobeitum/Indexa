@@ -5,7 +5,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule, NgClass } from '@angular/common';
 import flatpickr from 'flatpickr';
 import { Portuguese } from 'flatpickr/dist/l10n/pt.js';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ContatoService } from '../../services/contato.service';
 
 @Component({
   selector: 'app-formulario-contato',
@@ -16,10 +17,17 @@ import { RouterLink } from '@angular/router';
 })
 export class FormularioContatoComponent implements AfterViewInit, OnInit {
   contatoForm!: FormGroup;
-  
+  id: number | null = null; // preenchido quando a rota é /formulario/:id (edição)
+
+  private calendario?: flatpickr.Instance;
+
   @ViewChild('aniversario') aniversarioInput!: ElementRef<HTMLInputElement>;
 
-  constructor(){}
+  constructor(
+    private contatoService: ContatoService,
+    private router: Router,
+    private route: ActivatedRoute
+  ){}
 
   ngOnInit() {
     this.contatoForm = new FormGroup({
@@ -34,23 +42,54 @@ export class FormularioContatoComponent implements AfterViewInit, OnInit {
       redes: new FormControl(''),
       observacoes: new FormControl('')
     });
-  }
 
-  salvarContato() {
-    if (this.contatoForm.valid) {
-      console.log("Salvando...");
-      console.log(this.contatoForm.value);
-    } else {
-      console.log('Erro de validação');
+    const idDaRota = this.route.snapshot.paramMap.get('id');
+    if (idDaRota) {
+      this.id = Number(idDaRota);
+      this.carregarContato(this.id);
     }
   }
 
+  private carregarContato(id: number) {
+    this.contatoService.buscarContatoPorId(id).subscribe({
+      next: (contato) => {
+        const aniversario = this.isoParaBr(contato.aniversario);
+        this.contatoForm.patchValue({ ...contato, aniversario });
+        this.calendario?.setDate(aniversario, false, 'd/m/Y');
+      },
+      error: () => this.router.navigate(['/lista-contatos'])
+    });
+  }
+
+  // aaaa-mm-dd (vem da API) -> dd/mm/aaaa (formato do flatpickr)
+    private isoParaBr(data: string): string {
+    const [ano, mes, dia] = (data || '').split('-');
+    return ano && mes && dia ? `${dia}/${mes}/${ano}` : '';
+  }
+
+  salvarContato() {
+    if (!this.contatoForm.valid) {
+      console.log('Erro de validação');
+      return;
+    }
+
+    const dados = this.contatoForm.value;
+    const requisicao = this.id
+      ? this.contatoService.editarContato(this.id, dados)
+      : this.contatoService.criarContato(dados);
+
+    requisicao.subscribe({
+      next: () => this.router.navigate(['/lista-contatos']),
+      error: (erro) => console.error('Erro ao salvar contato', erro.error)
+    });
+  }
+
   cancelar() {
-    console.log('Submissão cancelada');
+    this.router.navigate(['/lista-contatos']);
   }
 
   ngAfterViewInit() {
-    flatpickr(this.aniversarioInput.nativeElement, {
+    this.calendario = flatpickr(this.aniversarioInput.nativeElement, {
       dateFormat: 'd/m/Y',
       locale: Portuguese,
       disableMobile: true,

@@ -1,22 +1,14 @@
 {
     "contatos": [
-        {
-            "nome": "Maria",
-            "telefone": "99 99999999",
-            "email": "maria@email.com",
-            "aniversario": "1995-06-01",
-            "redes": "",
-            "oberservacoes": "",
-            "id": 1
-        },
-        {
-            "nome": "João",
-            "telefone": "88 88888888",
-            "email": "joao@email.com",
-            "aniversario": "1990-01-06",
-            "redes": "",
-            "oberservacoes": "",
-            "id": 2
-        }
+        { "nome": "Ana", "telefone": "29 278869420", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Antônio", "telefone": "38 128451235", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Ágata", "telefone": "38 128451235", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Bruno", "telefone": "95 695521583", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Beatriz", "telefone": "25 854986459", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Carlos", "telefone": "94 543197849", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Cláudia", "telefone": "31 176437098", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Daniel", "telefone": "56 613692441", "email": "", "aniversario": "", "redes": "", "observacoes": "" },
+        { "nome": "Maria", "telefone": "99 99999999", "email": "maria@email.com", "aniversario": "1995-06-01", "redes": "", "observacoes": "" },
+        { "nome": "João", "telefone": "88 88888888", "email": "joao@email.com", "aniversario": "1990-01-06", "redes": "", "observacoes": "" }
     ]
 }

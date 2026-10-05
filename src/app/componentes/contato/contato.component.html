@@ -5,11 +5,11 @@
         </li>
         <li>{{ telefone }}</li>
         <li>
-            <button>
-                <img src="pencil-square.png" alt="">
+            <button type="button" [routerLink]="['/formulario', id]">
+                <img src="pencil-square.png" alt="Editar">
             </button>
-            <button>
-                <img src="trash.png" alt="">
+            <button type="button" (click)="excluir.emit(id)">
+                <img src="trash.png" alt="Excluir">
             </button>
         </li>
     </ul>
