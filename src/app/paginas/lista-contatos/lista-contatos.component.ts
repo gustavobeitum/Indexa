@@ -5,13 +5,8 @@ import { ContatoComponent } from '../../componentes/contato/contato.component';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.component';
-import { ContatoService } from '../../services/contato.service';
+import { Contato, ContatoService } from '../../services/contato.service';
 
-interface Contato {
-  id: number;
-  nome: string;
-  telefone: string;
-}
 
 @Component({
   selector: 'app-lista-contatos',
@@ -29,8 +24,24 @@ export class ListaContatosComponent implements OnInit {
 
   constructor(private contatoService: ContatoService){}
 
-  ngOnInit() {
-    this.contatos = this.contatoService.obterContatos();
+    ngOnInit() {
+    this.carregarContatos();
+  }
+
+  carregarContatos() {
+    this.contatoService.obterContatos().subscribe({
+      next: (contatos) => this.contatos = contatos,
+      error: (erro) => console.error('Erro ao carregar contatos', erro)
+    });
+  }
+
+  excluirContato(id: number) {
+    if (!confirm('Deseja realmente excluir este contato?')) return;
+
+    this.contatoService.excluirContato(id).subscribe({
+      next: () => this.contatos = this.contatos.filter(c => c.id !== id),
+      error: (erro) => console.error('Erro ao excluir contato', erro)
+    });
   }
 
   private removerAcentos(texto: string): string{

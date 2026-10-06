@@ -1,13 +1,19 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API REST do Indexa (agenda de contatos)",
+  "main": "server.js",
   "scripts": {
-    "start": "json-server --watch db.json --port 3000"
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --watch --disable-warning=ExperimentalWarning server.js"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "type": "commonjs"
-}
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+} 
