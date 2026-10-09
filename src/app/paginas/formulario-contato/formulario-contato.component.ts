@@ -1,13 +1,21 @@
 import { ContainerComponent } from '../../componentes/container/container.component';
 import { SeparadorComponent } from '../../componentes/separador/separador.component';
 import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { CommonModule, NgClass } from '@angular/common';
 import flatpickr from 'flatpickr';
 import { Portuguese } from 'flatpickr/dist/l10n/pt.js';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ContatoService } from '../../services/contato.service';
 
+function telefoneValido(control: AbstractControl): ValidationErrors | null {
+  const valor = (control.value || '').trim();
+  if (!valor) return null; // o Validators.required cuida do vazio
+  if (!/^[\d\s()+-]+$/.test(valor)) return { telefoneInvalido: true };
+  let digitos = valor.replace(/\D/g, '');
+  if (digitos.length > 11 && digitos.startsWith('55')) digitos = digitos.slice(2);
+  return /^[1-9]\d{9,10}$/.test(digitos) ? null : { telefoneInvalido: true };
+}
 @Component({
   selector: 'app-formulario-contato',
   standalone: true,
@@ -36,7 +44,7 @@ export class FormularioContatoComponent implements AfterViewInit, OnInit {
         Validators.minLength(4),
         Validators.maxLength(30)
       ]),
-      telefone: new FormControl('', Validators.required),
+      telefone: new FormControl('', [Validators.required, telefoneValido]),
       email: new FormControl('', [Validators.required, Validators.email]),
       aniversario: new FormControl(''),
       redes: new FormControl(''),

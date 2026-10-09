@@ -4,11 +4,11 @@
             <img src="/logo.png" alt="">
         </section>
         <section class="voltar-contato">
-        <button routerLink="/lista-contatos">
-            <img src="/arrow-left.png" alt="">
-            <span>Voltar</span>
-        </button>
-    </section>
+            <button routerLink="/lista-contatos">
+                <img src="/arrow-left.png" alt="">
+                <span>Voltar</span>
+            </button>
+        </section>
         <section class="cabecalho-contato">
             <img src="/adicionar-contato.png" alt="">
             <h1>Adicionar Contato</h1>
@@ -34,9 +34,14 @@
         }
         <label for="telefone">Telefone</label>
         <input type="text" id="telefone" placeholder="Digite o telefone do contato" formControlName="telefone" />
-        @if (contatoForm.get('telefone')?.errors && contatoForm.get('telefone')?.touched) {
+        @if (contatoForm.get('telefone')?.errors?.['required'] && contatoForm.get('telefone')?.touched) {
         <div class="mensagem-erro">
             Telefone obrigatório
+        </div>
+        }
+        @if (contatoForm.get('telefone')?.errors?.['telefoneInvalido'] && contatoForm.get('telefone')?.touched) {
+        <div class="mensagem-erro">
+            Telefone inválido. Use DDD + número, ex: 18 99999-9999
         </div>
         }
         <label for="email">Email</label>
@@ -66,10 +71,8 @@
             formControlName="observacoes"></textarea>
         <section class="botoes">
             <button (click)="cancelar()" class="botao-cancelar" type="button">Cancelar</button>
-            <button
-                [disabled]="contatoForm.invalid"
-                [ngClass]="contatoForm.valid ? 'botao-salvar' : 'botao-desabilitado'"
-                type="submit">
+            <button [disabled]="contatoForm.invalid"
+                [ngClass]="contatoForm.valid ? 'botao-salvar' : 'botao-desabilitado'" type="submit">
                 Salvar contato
             </button>
         </section>
